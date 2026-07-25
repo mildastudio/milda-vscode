@@ -1,0 +1,36 @@
+name: Publish
+
+# Publishes the extension to the VS Code Marketplace (vsce) and Open VSX (ovsx).
+# One-time setup — repo secrets:
+#   VSCE_PAT  — a VS Code Marketplace Personal Access Token (Azure DevOps, org "All
+#               accessible organizations", scope Marketplace > Manage). The publisher
+#               ("mildastudio") must exist: https://marketplace.visualstudio.com/manage
+#   OVSX_PAT  — an Open VSX access token (https://open-vsx.org, the "mildastudio"
+#               namespace must be created + verified once).
+# Publish AFTER @mildastudio/milda-lsp is on npm (the build bundles it).
+# Trigger by publishing a GitHub Release.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install
+      - run: npm run build -- --production
+      - run: npx vsce package --no-dependencies -o milda-vscode.vsix
+      - name: Publish to VS Code Marketplace
+        run: npx vsce publish --no-dependencies --packagePath milda-vscode.vsix
+        env:
+          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      - name: Publish to Open VSX
+        run: npx ovsx publish milda-vscode.vsix -p "$OVSX_PAT"
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}

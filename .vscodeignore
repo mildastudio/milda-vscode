@@ -1,0 +1,14 @@
+# Everything ships EXCEPT sources/tooling — the extension is bundled into dist/ and
+# the server into server/. Keep: dist, server, syntaxes, icons, language-configuration.json,
+# package.json, README, LICENSE, CHANGELOG.
+.vscode/**
+.github/**
+src/**
+scripts/**
+node_modules/**
+esbuild.mjs
+tsconfig.json
+**/*.ts
+**/*.map
+.gitignore
+.vscodeignore

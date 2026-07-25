@@ -1,0 +1,87 @@
+{
+  "name": "milda-vscode",
+  "displayName": "Milda",
+  "version": "0.1.0",
+  "private": true,
+  "publisher": "mildastudio",
+  "description": "Language support for the Milda design-system DSL (.milda): highlighting, diagnostics, completion, hover, go-to-definition, outline and folding.",
+  "license": "MIT",
+  "icon": "icons/milda-128.png",
+  "homepage": "https://milda.studio",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mildastudio/milda-vscode.git"
+  },
+  "engines": {
+    "vscode": "^1.82.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "milda",
+    "design system",
+    "design tokens",
+    "dsl"
+  ],
+  "activationEvents": [
+    "onLanguage:milda"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "milda",
+        "aliases": ["Milda", "milda"],
+        "extensions": [".milda"],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/milda.svg",
+          "dark": "./icons/milda.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "milda",
+        "scopeName": "source.milda",
+        "path": "./syntaxes/milda.tmLanguage.json"
+      }
+    ],
+    "configuration": {
+      "title": "Milda",
+      "properties": {
+        "milda.server.path": {
+          "type": "string",
+          "default": "",
+          "markdownDescription": "Absolute path to a `milda-lsp` server entry to launch instead of the version bundled with the extension. Leave empty to use the bundled server."
+        },
+        "milda.trace.server": {
+          "type": "string",
+          "enum": ["off", "messages", "verbose"],
+          "default": "off",
+          "description": "Trace the communication between VS Code and the Milda language server."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "bundle:server": "node scripts/bundle-server.mjs",
+    "build": "npm run bundle:server && node esbuild.mjs",
+    "typecheck": "tsc --noEmit",
+    "vscode:prepublish": "npm run build -- --production",
+    "package": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@mildastudio/milda-lsp": "^0.1.0",
+    "@types/node": "^20",
+    "@types/vscode": "^1.82.0",
+    "@vscode/vsce": "^3.2.0",
+    "esbuild": "^0.24.0",
+    "ovsx": "^0.10.0",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Milda",
+  "scopeName": "source.milda",
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#string"
+    },
+    {
+      "include": "#operator"
+    },
+    {
+      "include": "#keyword"
+    },
+    {
+      "include": "#type"
+    },
+    {
+      "include": "#number"
+    },
+    {
+      "include": "#variable"
+    },
+    {
+      "include": "#property"
+    }
+  ],
+  "repository": {
+    "comment": {
+      "match": "#.*$",
+      "name": "comment.line.number-sign.milda"
+    },
+    "string": {
+      "match": "\"(?:\\\\.|[^\"\\\\])*\"?",
+      "name": "string.quoted.double.milda"
+    },
+    "operator": {
+      "match": "->|→|<=|>=|!=|[=:]",
+      "name": "keyword.operator.milda"
+    },
+    "keyword": {
+      "match": "(?<![A-Za-z0-9_./%$-])(?:context-group|foundations|component|archetype|broadcast|requires|keyed-by|prelude|realize|present|events|motion|layout|escape|commit|milda|props|state|alias|arena|false|meta|type|uses|wire|gate|part|when|slot|from|bind|drop|note|true|by|as|on)(?![A-Za-z0-9_./%$-])",
+      "name": "keyword.control.milda"
+    },
+    "type": {
+      "match": "(?<![A-Za-z0-9_./%$-])(?:boolean|context|string|number|object|array|union|oklch|enum|srgb|ref|hex|rgb|hsl|p3)(?![A-Za-z0-9_./%$-])",
+      "name": "support.type.milda"
+    },
+    "number": {
+      "match": "(?<![A-Za-z0-9_./%$-])-?\\d+(?:\\.\\d+)?[a-z%]*(?![A-Za-z0-9_./%$-])",
+      "name": "constant.numeric.milda"
+    },
+    "variable": {
+      "match": "(?<![A-Za-z0-9_./%$-])\\$[A-Za-z0-9_./%$-]*(?![A-Za-z0-9_./%$-])",
+      "name": "variable.parameter.milda"
+    },
+    "property": {
+      "match": "(?<![A-Za-z0-9_./%$-])(?=[A-Za-z0-9_./%$-]*\\.)[A-Za-z0-9_./%$-]+(?![A-Za-z0-9_./%$-])",
+      "name": "variable.other.property.milda"
+    }
+  }
+}

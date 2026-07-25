@@ -1,0 +1,5 @@
+node_modules/
+dist/
+# Bundled at build time from @mildastudio/milda-lsp (see scripts/bundle-server.mjs).
+server/
+*.vsix

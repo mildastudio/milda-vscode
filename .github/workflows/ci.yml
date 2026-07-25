@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      # Fetches @mildastudio/milda-lsp; scripts/bundle-server.mjs copies it into ./server.
+      - run: npm install
+      - run: npm run typecheck
+      - run: npm run build
+      # Verify the extension packages cleanly (no publish).
+      - run: npx vsce package --no-dependencies -o milda-vscode.vsix
