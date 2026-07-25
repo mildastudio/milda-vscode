@@ -30,6 +30,12 @@ jobs:
         run: npx vsce publish --no-dependencies --packagePath milda-vscode.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      # Open VSX namespaces are created via the CLI (not a web UI). Idempotent: this
+      # no-ops once the namespace exists, so re-runs and future releases just work.
+      - name: Ensure Open VSX namespace
+        run: npx ovsx create-namespace milda -p "$OVSX_PAT" || true
+        env:
+          OVSX_PAT: ${{ secrets.OVSX_PAT }}
       - name: Publish to Open VSX
         run: npx ovsx publish milda-vscode.vsix -p "$OVSX_PAT"
         env:
