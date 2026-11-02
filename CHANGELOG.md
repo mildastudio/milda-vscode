@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.2
+
+- The language server reports what used to pass in silence: a part kind the language does not have
+  (`part Box: div`), and a state word outside the closed list (`state hover`, with the `hovered` it
+  meant). The state list is one list now, and completion offers all of it, `focus-visible` included.
+- A condition's operators (`and`, `or`, `not`), its `ancestor` anchor and the `compute` value are
+  coloured as syntax.
+
 ## 0.3.0
 
 - The bundled language server speaks surface 0.10. Padding can be stated on one axis or one edge:

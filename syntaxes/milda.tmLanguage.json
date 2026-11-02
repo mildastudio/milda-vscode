@@ -61,7 +61,7 @@
       }
     },
     "declaredType": {
-      "match": "(:)(\\s*)(?!(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|keyed-by|optional|instance|behavior|prelude|because|realize|present|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|raw|by|as|on|of)(?![A-Za-z0-9_./%$-]))([A-Za-z][A-Za-z0-9_./%$-]*)",
+      "match": "(:)(\\s*)(?!(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|labeled-by|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|ancestor|keyed-by|optional|instance|behavior|prelude|because|realize|present|compute|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|and|not|raw|or|by|as|on|of)(?![A-Za-z0-9_./%$-]))([A-Za-z][A-Za-z0-9_./%$-]*)",
       "captures": {
         "1": {
           "name": "keyword.operator.milda"
@@ -87,7 +87,7 @@
       "name": "keyword.operator.milda"
     },
     "keyword": {
-      "match": "(?<![A-Za-z0-9_./%$-])(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|keyed-by|optional|instance|behavior|prelude|because|realize|present|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|raw|by|as|on|of)(?![A-Za-z0-9_./%$-])",
+      "match": "(?<![A-Za-z0-9_./%$-])(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|labeled-by|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|ancestor|keyed-by|optional|instance|behavior|prelude|because|realize|present|compute|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|and|not|raw|or|by|as|on|of)(?![A-Za-z0-9_./%$-])",
       "name": "keyword.control.milda"
     },
     "type": {
