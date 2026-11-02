@@ -8,7 +8,8 @@ name: Publish
 #   OVSX_PAT  - an Open VSX access token (https://open-vsx.org, the "milda"
 #               namespace must be created + verified once).
 # Publish AFTER @mildastudio/milda-lsp is on npm (the build bundles it).
-# Trigger by publishing a GitHub Release.
+# Trigger by publishing a GitHub Release. Both publishes skip a version the registry
+# already has, so a re-run after one registry failed only fills the gap.
 
 on:
   release:
@@ -27,7 +28,7 @@ jobs:
       - run: npm run build -- --production
       - run: npx vsce package --no-dependencies -o milda-vscode.vsix
       - name: Publish to VS Code Marketplace
-        run: npx vsce publish --no-dependencies --packagePath milda-vscode.vsix
+        run: npx vsce publish --no-dependencies --skip-duplicate --packagePath milda-vscode.vsix
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
       # Open VSX namespaces are created via the CLI (not a web UI). Idempotent: this
@@ -37,6 +38,6 @@ jobs:
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
       - name: Publish to Open VSX
-        run: npx ovsx publish milda-vscode.vsix -p "$OVSX_PAT"
+        run: npx ovsx publish milda-vscode.vsix --skip-duplicate -p "$OVSX_PAT"
         env:
           OVSX_PAT: ${{ secrets.OVSX_PAT }}
