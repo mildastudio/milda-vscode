@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.0
+
+- The bundled language server speaks surface 0.10. Padding can be stated on one axis or one edge:
+  `inset.inline`, `inset.block`, `inset.inline-start`, `inset.inline-end`, `inset.block-start` and
+  `inset.block-end`, beside the bare `inset`. Edges are logical, and the physical words
+  (`inset.left`) are read with a warning that names the logical one.
+- Surface 0.9 is in too: what a part is, said where it is named - `part Button: container {` - and
+  `locked` gone from the language (the archetype decides which parts are required).
+- Completion offers the new inset names after a facet position, with the facet's description.
+
 ## 0.2.0
 
 - The bundled language server speaks surface 0.8: the `part X: kind locked {` header (0055), usage
