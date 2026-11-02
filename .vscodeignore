@@ -1,4 +1,4 @@
-# Everything ships EXCEPT sources/tooling — the extension is bundled into dist/ and
+# Everything ships EXCEPT sources/tooling - the extension is bundled into dist/ and
 # the server into server/. Keep: dist, server, syntaxes, icons, language-configuration.json,
 # package.json, README, LICENSE, CHANGELOG.
 .vscode/**

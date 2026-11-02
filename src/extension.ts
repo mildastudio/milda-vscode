@@ -1,16 +1,21 @@
-// ─── Milda for VS Code — extension entry ──────────────────────────────────────
+// ─── Milda for VS Code - extension entry ──────────────────────────────────────
 // Registers the .milda language (highlighting + config come from the manifest's
 // TextMate grammar and language-configuration.json) and starts the Milda language
 // server for diagnostics, completion, hover, go-to-definition, outline and folding.
 //
 // The server (@mildastudio/milda-lsp) is bundled into ./server and launched as a
-// Node module by VS Code's own runtime (TransportKind.stdio, no --flag needed — the
+// Node module by VS Code's own runtime (TransportKind.stdio, no --flag needed - the
 // server wires stdio explicitly), so the user needs nothing else installed.
 
 import { existsSync } from 'node:fs'
 import * as path from 'node:path'
 import { workspace, type ExtensionContext, window } from 'vscode'
-import { LanguageClient, type LanguageClientOptions, type ServerOptions, TransportKind } from 'vscode-languageclient/node'
+import {
+  LanguageClient,
+  type LanguageClientOptions,
+  type ServerOptions,
+  TransportKind,
+} from 'vscode-languageclient/node'
 
 let client: LanguageClient | undefined
 
@@ -19,7 +24,9 @@ function resolveServerModule(context: ExtensionContext): string | undefined {
   const override = workspace.getConfiguration('milda').get<string>('server.path')?.trim()
   if (override) {
     if (existsSync(override)) return override
-    window.showWarningMessage(`Milda: configured server path does not exist, using the bundled server: ${override}`)
+    window.showWarningMessage(
+      `Milda: configured server path does not exist, using the bundled server: ${override}`,
+    )
   }
   // Otherwise the version bundled with the extension.
   const bundled = context.asAbsolutePath(path.join('server', 'milda-lsp.cjs'))
@@ -29,7 +36,9 @@ function resolveServerModule(context: ExtensionContext): string | undefined {
 export function activate(context: ExtensionContext): void {
   const serverModule = resolveServerModule(context)
   if (!serverModule) {
-    window.showErrorMessage('Milda: language server not found. Highlighting works, but IntelliSense is unavailable.')
+    window.showErrorMessage(
+      'Milda: language server not found. Highlighting works, but IntelliSense is unavailable.',
+    )
     return
   }
 

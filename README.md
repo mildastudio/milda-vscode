@@ -1,28 +1,31 @@
 # Milda for VS Code
 
-Language support for the [Milda](https://milda.studio) design-system DSL (`.milda`) —
+Language support for the [Milda](https://milda.studio) design-system DSL (`.milda`) -
 in VS Code and any editor that installs from [Open VSX](https://open-vsx.org) (Cursor,
 Windsurf, VSCodium, …).
 
+Want to try the language first? The [Playground](https://play.milda.dev) runs the same
+language server in the browser, next to a live preview.
+
 ## Features
 
-- **Syntax highlighting** — a TextMate grammar kept in lock-step with the language
+- **Syntax highlighting** - a TextMate grammar kept in lock-step with the language
   server's classifier, so colours appear instantly on open.
-- **Diagnostics** — syntactic and cross-file semantic errors as you type.
-- **IntelliSense** — completion, hover documentation, and go-to-definition.
-- **Navigation** — document outline (breadcrumbs / symbols) and code folding.
+- **Diagnostics** - syntactic and cross-file semantic errors as you type.
+- **IntelliSense** - completion, hover documentation, and go-to-definition.
+- **Navigation** - document outline (breadcrumbs / symbols) and code folding.
 - **File recognition + icon** for `.milda`.
 
 The language-server features are powered by [`@mildastudio/milda-lsp`](https://github.com/mildastudio/milda-lsp),
-which ships **inside** the extension and runs on VS Code's built-in runtime — nothing
+which ships **inside** the extension and runs on VS Code's built-in runtime - nothing
 else to install.
 
 ## Settings
 
-| Setting | Description |
-| --- | --- |
-| `milda.server.path` | Absolute path to a `milda-lsp` build to launch instead of the bundled one. Empty = bundled. |
-| `milda.trace.server` | `off` \| `messages` \| `verbose` — trace client/server traffic. |
+| Setting              | Description                                                                                 |
+| -------------------- | ------------------------------------------------------------------------------------------- |
+| `milda.server.path`  | Absolute path to a `milda-lsp` build to launch instead of the bundled one. Empty = bundled. |
+| `milda.trace.server` | `off` \| `messages` \| `verbose` - trace client/server traffic.                             |
 
 ## Highlighter ↔ server parity
 

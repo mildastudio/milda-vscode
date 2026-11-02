@@ -2,12 +2,24 @@
   "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Milda",
   "scopeName": "source.milda",
+  "fileTypes": [
+    "milda"
+  ],
   "patterns": [
     {
       "include": "#comment"
     },
     {
       "include": "#string"
+    },
+    {
+      "include": "#valueLiteral"
+    },
+    {
+      "include": "#declaredType"
+    },
+    {
+      "include": "#declaredName"
     },
     {
       "include": "#operator"
@@ -37,16 +49,49 @@
       "match": "\"(?:\\\\.|[^\"\\\\])*\"?",
       "name": "string.quoted.double.milda"
     },
+    "valueLiteral": {
+      "match": "(?<![A-Za-z0-9_./%$-])(scaled|oklch|srgb|rgba|hsla|hex|rgb|hsl|p3)(\\s*\\()([^)\\n]*)(\\))",
+      "captures": {
+        "1": {
+          "name": "support.type.milda"
+        },
+        "3": {
+          "name": "constant.numeric.milda"
+        }
+      }
+    },
+    "declaredType": {
+      "match": "(:)(\\s*)(?!(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|keyed-by|optional|instance|behavior|prelude|because|realize|present|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|raw|by|as|on|of)(?![A-Za-z0-9_./%$-]))([A-Za-z][A-Za-z0-9_./%$-]*)",
+      "captures": {
+        "1": {
+          "name": "keyword.operator.milda"
+        },
+        "3": {
+          "name": "support.type.milda"
+        }
+      }
+    },
+    "declaredName": {
+      "match": "(?<![A-Za-z0-9_./%$-])(context-group|global-prop|component|token|layer|type|rule|part)(\\s+)([A-Za-z_][A-Za-z0-9_./%$-]*)",
+      "captures": {
+        "1": {
+          "name": "keyword.control.milda"
+        },
+        "3": {
+          "name": "entity.name.type.milda"
+        }
+      }
+    },
     "operator": {
       "match": "->|→|<=|>=|!=|[=:]",
       "name": "keyword.operator.milda"
     },
     "keyword": {
-      "match": "(?<![A-Za-z0-9_./%$-])(?:context-group|foundations|component|archetype|broadcast|requires|keyed-by|prelude|realize|present|events|motion|layout|escape|commit|milda|props|state|alias|arena|false|meta|type|uses|wire|gate|part|when|slot|from|bind|drop|note|true|by|as|on)(?![A-Za-z0-9_./%$-])",
+      "match": "(?<![A-Za-z0-9_./%$-])(?:context-group|described-by|presentation|foundations|global-prop|labelled-by|destination|transition|component|archetype|broadcast|behaviour|copyright|otherwise|required|requires|keyed-by|optional|instance|behavior|prelude|because|realize|present|default|payload|foreign|example|one-of|any-of|within|prefer|events|motion|layout|escape|commit|active|single|signal|locked|repeat|assets|anchor|milda|token|where|never|props|state|alias|arena|false|emits|icons|meta|type|rule|uses|wire|gate|part|when|slot|from|bind|drop|note|many|true|pill|a11y|demo|docs|raw|by|as|on|of)(?![A-Za-z0-9_./%$-])",
       "name": "keyword.control.milda"
     },
     "type": {
-      "match": "(?<![A-Za-z0-9_./%$-])(?:boolean|context|string|number|object|array|union|oklch|enum|srgb|ref|hex|rgb|hsl|p3)(?![A-Za-z0-9_./%$-])",
+      "match": "(?<![A-Za-z0-9_./%$-])(?:boolean|context|string|number|object|scaled|array|union|oklch|enum|srgb|rgba|hsla|ref|hex|rgb|hsl|p3)(?![A-Za-z0-9_./%$-])",
       "name": "support.type.milda"
     },
     "number": {
